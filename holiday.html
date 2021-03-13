@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Virtual Holiday</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+      body {
+        background: #edebe9;
+        font-family: 'Open Sans', 'Arial', sans-serif;
+        font-weight: 200;
+        font-size: 100%;
+        line-height: 1.5;
+        overflow-y: scroll;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+        padding: 0;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      h3 {
+        font-size: 1.2rem;
+      }
+      strong {
+        font-weight: bold;
+      }
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      input, select, button {
+        font-family: 'Open Sans', 'Arial', sans-serif;
+      }
+
+      button {
+        padding: 0.5rem;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+
+      main {
+        margin: 0 auto;
+        padding: 1rem;
+        max-width: 800px;
+      }
+
+      a {
+        color: rgb(20, 82, 153);
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: rgb(13, 94, 187);
+        text-decoration: underline;
+      }
+      .u-margin-bottom {
+        margin-bottom: 0.75rem;
+      }
+
+      .u-padding {
+        padding: 0.75rem;
+      }
+
+      .widget {
+        box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%),
+          0 1px 5px 0 rgb(0 0 0 / 12%);
+        background: #fff;
+        padding: 0.75rem;
+      }
+
+      label {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Virtual Holiday</h1>
+      <div class="widget u-margin-bottom">
+        <p>Because during these times you can't go on holiday anywhere physically.</p>
+      </div>
+      <br />
+      <h2>Take me somewhere:</h2>
+      <form id="gosomewhere">
+        <div class="widget">
+          <div class="u-margin-bottom">
+            <h3>Weather</h3>
+            <div>
+              <input type="radio" id="weather-sunny" name="weather" value="sunny" hecked>
+              <label for="weather-sunny">Hot</label>
+            </div>
+            <div>
+              <input type="radio" id="weather-cool" name="weather" value="cool" hecked>
+              <label for="weather-cool">Cooler</label>
+            </div>  
+          </div>
+          <div class="u-margin-bottom">
+            <h3>Familiarity</h3>
+            <div>
+              <input type="radio" id="familiar-true" name="familiarity" value="familiar" hecked>
+              <label for="familiar-true">Familiar</label>
+            </div>
+            <div>
+              <input type="radio" id="familiar-false" name="familiarity" value="unfamiliar" hecked>
+              <label for="familiar-false">Unfamiliar</label>
+            </div>  
+          </div>
+          <div>
+            <h3>Landscape</h3>
+            <div>
+              <input type="radio" id="urban-false" name="landscape" value="nature" hecked>
+              <label for="urban-false">Nature</label>
+            </div>
+            <div>
+              <input type="radio" id="urban-true" name="landscape" value="urban" hecked>
+              <label for="urban-true">Urban</label>
+            </div>  
+          </div>
+        </div>
+        <div class="widget u-margin-bottom">
+          <button type="submit">Go Somewhere</button>
+        </div>
+      </form>
+    </main>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        var locations = [
+          {
+            name: 'sitges',
+            link: 'https://www.google.com/maps/@41.2330734,1.8059313,3a,75y,82.76h,94.04t/data=!3m8!1e1!3m6!1sAF1QipP8MhPSb14_XM8PLk93cFaYEmwnAyOYvpscQFQq!2e10!3e11!6shttps:%2F%2Flh5.googleusercontent.com%2Fp%2FAF1QipP8MhPSb14_XM8PLk93cFaYEmwnAyOYvpscQFQq%3Dw203-h100-k-no-pi-0-ya25.839674-ro-0-fo100!7i6282!8i3141',
+            weather: 'sunny',
+            familiarity: 'familiar',
+            landscape: 'urban'
+          },
+          {
+            name: 'marseille',
+            link: 'https://www.google.com/maps/@43.2885598,5.3533836,3a,75y,15.54h,92.5t/data=!3m6!1e1!3m4!1ssxjDETjjdy2vzOZzW4lVMA!2e0!7i16384!8i8192',
+            weather: 'sunny',
+            familiarity: 'familiar',
+            landscape: 'urban'
+          },
+          {
+            name: 'menorca',
+            link: 'https://www.google.com/maps/@39.8225834,4.2257786,3a,75y,227.62h,69t/data=!3m8!1e1!3m6!1sAF1QipO3R-Y2Tk9gY0N46i4mIpByfsAyFgATO7kp1Xik!2e10!3e11!6shttps:%2F%2Flh5.googleusercontent.com%2Fp%2FAF1QipO3R-Y2Tk9gY0N46i4mIpByfsAyFgATO7kp1Xik%3Dw203-h100-k-no-pi-0-ya75.2834-ro-0-fo100!7i8704!8i4352',
+            weather: 'sunny',
+            familiarity: 'familiar',
+            landscape: 'nature'
+          },
+          {
+            name: 'barcelona',
+            link: 'https://www.google.com/maps/@41.3875809,2.1878304,3a,75y,177.76h,95.34t/data=!3m8!1e1!3m6!1sAF1QipO1eC21eeJPYmQUsUClyTZahw6cmit9ENyN3dnQ!2e10!3e11!6shttps:%2F%2Flh5.googleusercontent.com%2Fp%2FAF1QipO1eC21eeJPYmQUsUClyTZahw6cmit9ENyN3dnQ%3Dw203-h100-k-no-pi0-ya332.4981-ro-0-fo100!7i5376!8i2688',
+            weather: 'sunny',
+            familiarity: 'familiar',
+            landscape: 'urban'
+          },
+          {
+            name: 'lanzarote',
+            link: 'https://www.google.com/maps/@28.9204007,-13.6594396,3a,75y,163.99h,84.75t/data=!3m6!1e1!3m4!1sMIF_FtNGAyOCpz1oOxsQHg!2e0!7i16384!8i8192',
+            weather: 'sunny',
+            familiarity: 'familiar',
+            landscape: 'urban'
+          },
+          {
+            name: 'mexico',
+            link: 'https://www.google.com/maps/@30.2777778,-86.0181023,3a,75y,30.4h,83.37t/data=!3m7!1e1!3m5!1sAF1QipOjCC8k4m83s9dd5e53OTmyupvgS97LSdWpz54-!2e10!3e12!7i7200!8i3600',
+            weather: 'sunny',
+            familiarity: 'unfamiliar',
+            landscape: 'urban'
+          },
+          {
+            name: 'hawaii',
+            link: 'https://www.google.com/maps/@20.9991114,-156.6665538,3a,75y,165.48h,88.04t/data=!3m8!1e1!3m6!1sAF1QipM_HkFLU3mcBWOlIqW20djAj9GSuF10mVcQBGXZ!2e10!3e11!6shttps:%2F%2Flh5.googleusercontent.com%2Fp%2FAF1QipM_HkFLU3mcBWOlIqW20djAj9GSuF10mVcQBGXZ%3Dw203-h100-k-no-pi-0-ya200.34985-ro0-fo100!7i8704!8i4352',
+            weather: 'sunny',
+            familiarity: 'unfamiliar',
+            landscape: 'nature'
+          },
+          {
+            name: 'taiwan',
+            link: 'https://www.google.com/maps/@21.9592797,120.7629617,2a,75y,112.77h,90.85t/data=!3m7!1e1!3m5!1sElP_jNFVHRyGCNJArT9PZQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fpanoid%3DElP_jNFVHRyGCNJArT9PZQ%26cb_client%3Dmaps_sv.tactile.gps%26w%3D203%26h%3D100%26yaw%3D117.57776%26pitch%3D0%26thumbfov%3D100!7i13312!8i6656',
+            weather: 'sunny',
+            familiarity: 'unfamiliar',
+            landscape: 'nature'
+          },
+          {
+            name: 'bakewell',
+            link: 'https://www.google.com/maps/@53.2132068,-1.6752333,3a,75y,208.04h,93.92t/data=!3m6!1e1!3m4!1sPPFGWEQ2UDr9Ec7cH-eiLQ!2e0!7i13312!8i6656',
+            weather: 'cool',
+            familiarity: 'familiar',
+            landscape: 'urban'
+          },
+          {
+            name: 'dublin',
+            link: 'https://www.google.com/maps/@53.3476431,-6.2591266,3a,75y,227.68h,93.44t/data=!3m6!1e1!3m4!1sDjdaXW71GmdsRRPvg3rc0A!2e0!7i16384!8i8192',
+            weather: 'cool',
+            familiarity: 'familiar',
+            landscape: 'urban'
+          },
+          {
+            name: 'lakedistrict',
+            link: 'https://www.google.com/maps/@54.4754009,-3.1931687,3a,75y,328.08h,91.06t/data=!3m8!1e1!3m6!1sAF1QipPznU7BRlwtF79x_eRckcNIw_AbE7UGJRaGZHEV!2e10!3e11!6shttps:%2F%2Flh5.googleusercontent.com%2Fp%2FAF1QipPznU7BRlwtF79x_eRckcNIw_AbE7UGJRaGZHEV%3Dw203-h100-k-no-pi0-ya340-ro-0-fo100!7i8704!8i4352',
+            weather: 'cool',
+            familiarity: 'familiar',
+            landscape: 'nature'
+          },
+          {
+            name: 'norway',
+            link: 'https://www.google.com/maps/@60.1329475,6.7539929,2a,75y,252.87h,87.22t/data=!3m6!1e1!3m4!1s1hkGPVHVaAvnCdD_I-ZakQ!2e0!7i13312!8i6656',
+            weather: 'cool',
+            familiarity: 'unfamiliar',
+            landscape: 'nature'
+          },
+          {
+            name: 'finland',
+            link: 'https://www.google.com/maps/@69.1548854,27.8311631,3a,75y,320.81h,91.28t/data=!3m8!1e1!3m6!1sAF1QipMy78F09d8fxboHlx22ZeymmH8VVdJ15K4idIA!2e10!3e11!6shttps:%2F%2Flh5.googleusercontent.com%2Fp%2FAF1QipMy78F09d8fxboHlx22ZeymmH8VVdJ15K4idIA%3Dw203-h100-k-no-pi0.18032677-ya170.62674-ro0.16240437-fo100!7i7680!8i3840',
+            weather: 'cool',
+            familiarity: 'unfamiliar',
+            landscape: 'nature'
+          },
+          {
+            name: 'riga',
+            link: 'https://www.google.com/maps/@56.9492044,24.1040252,3a,75y,219.96h,87.9t/data=!3m7!1e1!3m5!1sMJbp11aIVIqlCV6FJW0-7Q!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fpanoid%3DMJbp11aIVIqlCV6FJW0-7Q%26cb_client%3Dmaps_sv.tactile.gps%26w%3D203%26h%3D100%26yaw%3D285.91708%26pitch%3D0%26thumbfov%3D100!7i13312!8i6656',
+            weather: 'cool',
+            familiarity: 'unfamiliar',
+            landscape: 'urban'
+          },
+          {
+            name: 'helsinki',
+            link: 'https://www.google.com/maps/@60.1705318,24.9508361,3a,75y,128.4h,98.22t/data=!3m7!1e1!3m5!1swlS6xBRiDeSVhF-Bf4D0ow!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fpanoid%3DwlS6xBRiDeSVhF-Bf4D0ow%26cb_client%3Dmaps_sv.tactile.gps%26w%3D203%26h%3D100%26yaw%3D155.8724%26pitch%3D0%26thumbfov%3D100!7i13312!8i6656',
+            weather: 'cool',
+            familiarity: 'unfamiliar',
+            landscape: 'urban'
+          },
+        ];
+
+        function getValue(radioName) {
+          var els = document.querySelectorAll('[name="' + radioName + '"]');
+
+          for (var i = 0; i < els.length; i++) {
+            if (els[i].checked) {
+              return els[i].value;
+            }
+          }
+
+          return null;
+        }
+
+        var form = document.getElementById('gosomewhere');
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          var weather = getValue('weather');
+          var familiarity = getValue('familiarity');
+          var landscape = getValue('landscape');
+
+          var locs = [];
+
+          for (var i = 0; i < locations.length; i++) {
+            var loc = locations[i];
+
+            if (weather) {
+              if (loc.weather !== weather) {
+                continue;
+              }
+            }
+
+            if (familiarity) {
+              if (loc.familiarity !== familiarity) {
+                continue;
+              }
+            }
+
+            if (landscape) {
+              if (loc.landscape !== landscape) {
+                continue;
+              }
+            }
+
+            locs.push(loc);
+          }
+
+          var selectedLoc = locs[Math.floor(Math.random () * locs.length)];
+          window.open(selectedLoc.link);
+        });
+      });
+    </script>
+  </body>
+</html>
